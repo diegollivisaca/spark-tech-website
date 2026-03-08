@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spark Tech Solutions LLC | Licensed Electrician – Chicago Suburbs</title>
+  <meta name="description" content="Licensed electrical contractor serving Glenview, Arlington Heights, Elmhurst and the Chicago northwest and western suburbs. Panel upgrades, EV chargers, troubleshooting & more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --navy:    #0d1b2a;
+      --steel:   #1c3150;
+      --gold:    #f5a623;
+      --gold-dk: #d4891a;
+      --white:   #ffffff;
+      --off-wh:  #f4f6f9;
+      --muted:   #8fa0b4;
+      --text:    #1e2d3d;
+      --radius:  6px;
+      --shadow:  0 4px 24px rgba(13,27,42,.18);
+    }
+
+    /* ── RESET ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Barlow', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── UTILITIES ──────────────────────────────────────────── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .section-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+    .section-title.light { color: var(--white); }
+    .section-sub {
+      font-size: 1.05rem;
+      color: #4a607a;
+      max-width: 560px;
+    }
+    .section-sub.light { color: #a8c0d8; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      border: none;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      white-space: nowrap;
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: var(--navy);
+    }
+    .btn-gold:hover { background: var(--gold-dk); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(245,166,35,.35); }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,.5);
+    }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,.08); }
+
+    /* ── HEADER / NAV ───────────────────────────────────────── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--navy);
+      border-bottom: 3px solid var(--gold);
+      box-shadow: 0 2px 16px rgba(0,0,0,.35);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+      gap: 24px;
+    }
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+    .logo-placeholder {
+      width: 46px;
+      height: 46px;
+      border-radius: 8px;
+      border: 2px dashed var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-align: center;
+      line-height: 1.2;
+    }
+    .logo-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      color: var(--white);
+    }
+    .logo-text strong {
+      display: block;
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+      line-height: 1;
+    }
+    .logo-text span {
+      font-size: .72rem;
+      color: var(--muted);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: .92rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #a8c0d8;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--gold);
+      color: var(--navy);
+      padding: 9px 18px;
+      border-radius: var(--radius);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: .92rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      transition: background .2s, box-shadow .2s;
+      flex-shrink: 0;
+    }
+    .nav-cta:hover { background: var(--gold-dk); box-shadow: 0 4px 14px rgba(245,166,35,.4); }
+    .nav-cta svg { width: 15px; height: 15px; }
+
+    /* ── HERO ───────────────────────────────────────────────── */
+    .hero {
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+      padding: 80px 0 88px;
+    }
+    /* diagonal accent stripe */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -120px;
+      width: 560px; height: 560px;
+      background: linear-gradient(135deg, rgba(245,166,35,.12) 0%, transparent 65%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    /* circuit-line texture suggestion */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(245,166,35,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245,166,35,.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 48px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(245,166,35,.15);
+      border: 1px solid rgba(245,166,35,.35);
+      color: var(--gold);
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: .78rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .5; transform: scale(.75); }
+    }
+    .hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2.6rem, 5.5vw, 4rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.05;
+      margin-bottom: 18px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: #8fa0b4;
+      max-width: 520px;
+      margin-bottom: 32px;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero-card {
+      background: var(--steel);
+      border: 1px solid rgba(245,166,35,.2);
+      border-radius: 12px;
+      padding: 32px 28px;
+      text-align: center;
+      min-width: 210px;
+      flex-shrink: 0;
+    }
+    .hero-card-icon {
+      width: 56px; height: 56px;
+      background: rgba(245,166,35,.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 14px;
+    }
+    .hero-card-icon svg { width: 26px; height: 26px; color: var(--gold); }
+    .hero-card p {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .78rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .hero-card a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: .02em;
+      transition: color .2s;
+    }
+    .hero-card a:hover { color: var(--gold); }
+    .hero-card small {
+      display: block;
+      color: var(--muted);
+      font-size: .8rem;
+      margin-top: 4px;
+    }
+
+    /* ── TRUST BAR ──────────────────────────────────────────── */
+    .trust-bar {
+      background: var(--gold);
+      padding: 14px 0;
+    }
+    .trust-items {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: .9rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--navy);
+    }
+    .trust-item svg { width: 17px; height: 17px; }
+
+    /* ── SERVICES ───────────────────────────────────────────── */
+    .services { padding: 80px 0; background: var(--off-wh); }
+    .services-header { text-align: center; margin-bottom: 52px; }
+    .services-header .section-sub { margin: 0 auto; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 36px 28px;
+      border: 1px solid #dde5f0;
+      border-top: 4px solid transparent;
+      transition: border-color .25s, box-shadow .25s, transform .25s;
+    }
+    .service-card:hover {
+      border-top-color: var(--gold);
+      box-shadow: var(--shadow);
+      transform: translateY(-4px);
+    }
+    .service-icon {
+      width: 54px; height: 54px;
+      background: rgba(245,166,35,.12);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .service-icon svg { width: 26px; height: 26px; color: var(--gold-dk); }
+    .service-card h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .service-card p { font-size: .96rem; color: #4a607a; }
+
+    /* ── SERVICE AREA ───────────────────────────────────────── */
+    .area { padding: 80px 0; background: var(--navy); }
+    .area-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .area-map {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 3px solid rgba(245,166,35,.25);
+      box-shadow: 0 8px 40px rgba(0,0,0,.4);
+      aspect-ratio: 4/3;
+      background: var(--steel);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    /* Stylized map placeholder */
+    .area-map svg.map-svg {
+      width: 100%; height: 100%;
+      position: absolute; inset: 0;
+    }
+    .map-label {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+    .map-label p {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .82rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .towns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 28px;
+    }
+    .town-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: .95rem;
+      color: #c8d8ea;
+      transition: background .2s, border-color .2s;
+    }
+    .town-pill:hover { background: rgba(245,166,35,.12); border-color: rgba(245,166,35,.35); color: var(--white); }
+    .town-pill svg { width: 14px; height: 14px; color: var(--gold); flex-shrink: 0; }
+    .area-note {
+      margin-top: 20px;
+      font-size: .9rem;
+      color: var(--muted);
+    }
+
+    /* ── WHY CHOOSE US ──────────────────────────────────────── */
+    .why { padding: 80px 0; background: var(--white); }
+    .why-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .why-visual {
+      background: var(--navy);
+      border-radius: 12px;
+      padding: 40px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    .why-visual::before {
+      content: '';
+      position: absolute;
+      bottom: -40px; right: -40px;
+      width: 200px; height: 200px;
+      background: rgba(245,166,35,.07);
+      border-radius: 50%;
+    }
+    .stat-row { display: flex; gap: 32px; margin-bottom: 32px; }
+    .stat {
+      flex: 1;
+      text-align: center;
+      background: rgba(255,255,255,.05);
+      border-radius: 8px;
+      padding: 22px 14px;
+      border: 1px solid rgba(245,166,35,.15);
+    }
+    .stat .num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat .lbl {
+      font-size: .82rem;
+      color: var(--muted);
+      letter-spacing: .04em;
+    }
+    .why-visual-quote {
+      font-size: 1rem;
+      color: #8fa0b4;
+      font-style: italic;
+      border-left: 3px solid var(--gold);
+      padding-left: 16px;
+      position: relative;
+      z-index: 1;
+    }
+    .reasons { list-style: none; display: flex; flex-direction: column; gap: 20px; }
+    .reason {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+    .reason-icon {
+      width: 42px; height: 42px;
+      flex-shrink: 0;
+      background: rgba(245,166,35,.1);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 2px;
+    }
+    .reason-icon svg { width: 20px; height: 20px; color: var(--gold-dk); }
+    .reason h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .reason p { font-size: .93rem; color: #4a607a; }
+
+    /* ── CONTACT ────────────────────────────────────────────── */
+    .contact {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--steel) 100%);
+      padding: 80px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(245,166,35,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245,166,35,.03) 1px, transparent 1px);
+      background-size: 56px 56px;
+      pointer-events: none;
+    }
+    .contact-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .contact-info h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+    .contact-info h2 span { color: var(--gold); }
+    .contact-info p { color: #8fa0b4; font-size: 1rem; margin-bottom: 30px; }
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .contact-detail-icon {
+      width: 44px; height: 44px;
+      background: rgba(245,166,35,.15);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-detail-icon svg { width: 20px; height: 20px; color: var(--gold); }
+    .contact-detail strong {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .78rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+    .contact-detail a, .contact-detail span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+      transition: color .2s;
+    }
+    .contact-detail a:hover { color: var(--gold); }
+    .cta-box {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(245,166,35,.25);
+      border-radius: 12px;
+      padding: 40px 36px;
+      text-align: center;
+    }
+    .cta-box h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .cta-box p { color: #8fa0b4; font-size: .95rem; margin-bottom: 28px; }
+    .call-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+      padding: 18px 28px;
+      border-radius: 8px;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      width: 100%;
+    }
+    .call-btn svg { width: 24px; height: 24px; }
+    .call-btn:hover {
+      background: var(--gold-dk);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(245,166,35,.45);
+    }
+    .cta-hours {
+      margin-top: 16px;
+      font-size: .85rem;
+      color: var(--muted);
+    }
+
+    /* ── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      background: #070f1a;
+      padding: 24px 0;
+      text-align: center;
+    }
+    footer p {
+      color: #3d5165;
+      font-size: .85rem;
+    }
+    footer span { color: var(--muted); }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-card { display: none; }
+      .area-inner,
+      .why-inner,
+      .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+      .area-map { aspect-ratio: 16/9; }
+    }
+    @media (max-width: 600px) {
+      .hero { padding: 56px 0 64px; }
+      .stat-row { gap: 14px; }
+      .towns { grid-template-columns: 1fr; }
+    }
+
+    /* ── BOLT ICON SVG HELPER ───────────────────────────────── */
+    .icon-bolt { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════ HEADER -->
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <div class="logo-wrap">
+          <!-- LOGO PLACEHOLDER: Replace with <img src="your-logo.png" alt="Spark Tech Solutions"> -->
+          <div class="logo-placeholder">YOUR<br>LOGO</div>
+          <div class="logo-text">
+            <strong>Spark Tech Solutions</strong>
+            <span>LLC &nbsp;·&nbsp; Licensed Electrician</span>
+          </div>
+        </div>
+
+        <ul class="nav-links">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#area">Service Area</a></li>
+          <li><a href="#why">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <a class="nav-cta" href="tel:7738072588">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.43 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          773-807-2588
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════ HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="hero-badge">Serving Chicago's Suburbs</div>
+          <h1>Expert Electrical<br>Work Done <em>Right.</em></h1>
+          <p class="hero-sub">
+            Licensed and insured electrical contractor serving the northwest and western Chicago suburbs.
+            From panel upgrades to EV charger installs — we handle it all.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-gold" href="tel:7738072588">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.43 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Call 773-807-2588
+            </a>
+            <a class="btn btn-outline" href="#services">See Our Services</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.43 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <p>Call or Text Anytime</p>
+          <a href="tel:7738072588">773-807-2588</a>
+          <small>Free Estimates Available</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ TRUST BAR -->
+  <div class="trust-bar">
+    <div class="container">
+      <div class="trust-items">
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Licensed &amp; Insured
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Free Estimates
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Quality Guaranteed
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Locally Owned
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════ SERVICES -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="services-header">
+        <p class="section-label">What We Do</p>
+        <h2 class="section-title">Electrical Services You Can Count On</h2>
+        <p class="section-sub">From routine troubleshooting to full panel upgrades and EV charger installations, we bring safe, code-compliant work to every job.</p>
+      </div>
+      <div class="services-grid">
+
+        <!-- Troubleshooting -->
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <h3>Electrical Troubleshooting</h3>
+          <p>Tripping breakers, dead outlets, flickering lights? We diagnose and fix electrical issues quickly so your home or business stays safe and powered.</p>
+        </div>
+
+        <!-- Panel Upgrades -->
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>Panel Upgrades</h3>
+          <p>Outdated 100A panel? We upgrade to modern 200A+ service panels — safer, up to code, and ready to handle today's electrical demands.</p>
+        </div>
+
+        <!-- EV Chargers -->
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect x="9" y="11" width="14" height="10" rx="1"/><path d="M13 16h2l1-3 2 6 1-3h2"/></svg>
+          </div>
+          <h3>EV Charger Installations</h3>
+          <p>Charge your electric vehicle at home with a proper Level 2 EVSE installation. We handle the wiring, permit, and setup from start to finish.</p>
+        </div>
+
+        <!-- Dedicated Circuits -->
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 13 9 20 9"/><polygon points="13 2 2 9 13 16 24 9 13 2"/><polyline points="2 17 13 24 24 17"/></svg>
+          </div>
+          <h3>New Dedicated Circuits</h3>
+          <p>Adding a home office, workshop, kitchen appliance, or hot tub? We install dedicated circuits that deliver reliable, protected power exactly where you need it.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ SERVICE AREA -->
+  <section class="area" id="area">
+    <div class="container">
+      <div class="area-inner">
+
+        <!-- Map placeholder -->
+        <div class="area-map">
+          <!-- Simple stylized Illinois map outline placeholder -->
+          <svg class="map-svg" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="300" fill="#1c3150"/>
+            <!-- Grid lines -->
+            <line x1="0" y1="60" x2="400" y2="60" stroke="#f5a62315" stroke-width="1"/>
+            <line x1="0" y1="120" x2="400" y2="120" stroke="#f5a62315" stroke-width="1"/>
+            <line x1="0" y1="180" x2="400" y2="180" stroke="#f5a62315" stroke-width="1"/>
+            <line x1="0" y1="240" x2="400" y2="240" stroke="#f5a62315" stroke-width="1"/>
+            <line x1="80" y1="0" x2="80" y2="300" stroke="#f5a62315" stroke-width="1"/>
+            <line x1="160" y1="0" x2="160" y2="300" stroke="#f5a62315" stroke-width="1"/>
+            <line x1="240" y1="0" x2="240" y2="300" stroke="#f5a62315" stroke-width="1"/>
+            <line x1="320" y1="0" x2="320" y2="300" stroke="#f5a62315" stroke-width="1"/>
+            <!-- Chicago metro outline suggestion -->
+            <ellipse cx="260" cy="180" rx="100" ry="80" fill="#f5a62310" stroke="#f5a62330" stroke-width="1.5" stroke-dasharray="6 4"/>
+            <!-- Coverage zone highlight -->
+            <ellipse cx="200" cy="140" rx="80" ry="65" fill="#f5a62320" stroke="#f5a623" stroke-width="2"/>
+            <!-- Lake Michigan suggestion -->
+            <path d="M310 60 Q330 110 320 200 Q310 240 290 270 L400 270 L400 60 Z" fill="#0d1b2a50"/>
+            <!-- Dots for cities -->
+            <circle cx="250" cy="175" r="6" fill="#f5a623"/>
+            <circle cx="185" cy="120" r="6" fill="#f5a623"/>
+            <circle cx="160" cy="155" r="6" fill="#f5a623"/>
+            <!-- Labels -->
+            <text x="258" y="165" fill="#ffffff" font-size="10" font-family="sans-serif" font-weight="bold">Chicago</text>
+            <text x="135" y="115" fill="#f5a623" font-size="9" font-family="sans-serif">Arlington Hts</text>
+            <text x="135" y="170" fill="#f5a623" font-size="9" font-family="sans-serif">Elmhurst</text>
+            <text x="185" y="107" fill="#f5a623" font-size="9" font-family="sans-serif">Glenview</text>
+            <!-- Service area label -->
+            <text x="200" y="260" fill="#8fa0b4" font-size="10" font-family="sans-serif" text-anchor="middle">Northwest &amp; Western Suburbs</text>
+          </svg>
+        </div>
+
+        <div>
+          <p class="section-label">Service Area</p>
+          <h2 class="section-title light">We Come to You</h2>
+          <p class="section-sub light">Spark Tech Solutions serves homeowners and businesses across the Chicago northwest and western suburbs, including:</p>
+
+          <div class="towns">
+            <div class="town-pill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Glenview
+            </div>
+            <div class="town-pill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Arlington Heights
+            </div>
+            <div class="town-pill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Elmhurst
+            </div>
+            <div class="town-pill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Palatine
+            </div>
+            <div class="town-pill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Schaumburg
+            </div>
+            <div class="town-pill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Wheeling
+            </div>
+            <div class="town-pill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Lombard
+            </div>
+            <div class="town-pill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              &amp; Surrounding Areas
+            </div>
+          </div>
+          <p class="area-note">Not sure if we cover your area? Give us a call — we're happy to let you know.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ WHY CHOOSE US -->
+  <section class="why" id="why">
+    <div class="container">
+      <div class="why-inner">
+
+        <div class="why-visual">
+          <div class="stat-row">
+            <div class="stat">
+              <div class="num">10+</div>
+              <div class="lbl">Years Experience</div>
+            </div>
+            <div class="stat">
+              <div class="num">500+</div>
+              <div class="lbl">Jobs Completed</div>
+            </div>
+          </div>
+          <p class="why-visual-quote">
+            "We treat every home like our own — safe work, clean installs, and we always pull the permit."
+          </p>
+        </div>
+
+        <div>
+          <p class="section-label">Why Choose Us</p>
+          <h2 class="section-title">A Contractor You Can Trust</h2>
+          <ul class="reasons">
+            <li class="reason">
+              <div class="reason-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <h4>Licensed &amp; Fully Insured</h4>
+                <p>We carry full liability insurance and are licensed by the State of Illinois, protecting you and your property on every job.</p>
+              </div>
+            </li>
+            <li class="reason">
+              <div class="reason-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              </div>
+              <div>
+                <h4>Code-Compliant Work</h4>
+                <p>We pull permits and follow NEC and local codes. No shortcuts — just electrical work that passes inspection and keeps your family safe.</p>
+              </div>
+            </li>
+            <li class="reason">
+              <div class="reason-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <h4>On-Time &amp; Professional</h4>
+                <p>We show up when we say we will, communicate clearly, and leave your space clean. Your time matters.</p>
+              </div>
+            </li>
+            <li class="reason">
+              <div class="reason-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+              <div>
+                <h4>Upfront, Honest Pricing</h4>
+                <p>Free estimates with no obligation. We explain the work and the cost before we start — no hidden fees, no surprises.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-inner">
+        <div class="contact-info">
+          <h2>Ready to Get <span>Started?</span></h2>
+          <p>Call or text us for a free estimate. We respond fast and are happy to answer any questions about your project.</p>
+
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.43 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <strong>Phone / Text</strong>
+              <a href="tel:7738072588">773-807-2588</a>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <strong>Service Area</strong>
+              <span>Glenview · Arlington Heights · Elmhurst &amp; Nearby</span>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <div>
+              <strong>Availability</strong>
+              <span>Mon – Sat &nbsp;|&nbsp; Free Estimates</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cta-box">
+          <h3>Get Your Free Estimate</h3>
+          <p>No pressure, no obligation. Tell us about your project and we'll give you a straight answer and a fair price.</p>
+          <a class="call-btn" href="tel:7738072588">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.43 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            773-807-2588
+          </a>
+          <p class="cta-hours">Call or text anytime — we typically respond within the hour.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ FOOTER -->
+  <footer>
+    <div class="container">
+      <p>© 2025 <span>Spark Tech Solutions LLC</span> &nbsp;·&nbsp; Licensed Electrical Contractor &nbsp;·&nbsp; Chicago Northwest &amp; Western Suburbs</p>
+    </div>
+  </footer>
+
+</body>
+</html>
